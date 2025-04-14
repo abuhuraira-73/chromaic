@@ -1,0 +1,436 @@
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import PageTitle from "./pages-components/shop-components/page-title";
+import FilterSidebar from "./pages-components/shop-components/filter-sidebar";
+
+function ProductCard({
+  name,
+  title,
+  price,
+  salePrice,
+  images,
+  sizes,
+  colors,
+  discount,
+  viewType,
+}) {
+  return (
+    <div className={`product-card ${viewType}`}>
+      <div className="product-image">
+        <img src={images[0]} alt={title} />
+        {discount > 0 && (
+          <div className="discount-badge">{discount}% OFF</div>
+        )}
+      </div>
+      <div className="product-details">
+        <h3 className="product-title">{name}</h3>
+        <div className="product-price">
+          <span
+            className="original-price"
+            style={{ textDecoration: "line-through", marginRight: "8px" }}
+          >
+            ${price.toFixed(2)}
+          </span>
+          <span className="sale-price">${salePrice.toFixed(2)}</span>
+        </div>
+        {sizes && sizes.length > 0 && (
+          <div className="product-sizes">
+            {sizes.map((size, idx) => (
+              <span key={idx} className="size">
+                {size}
+              </span>
+            ))}
+          </div>
+        )}
+        {colors && colors.length > 0 && (
+          <div className="product-colors">
+            {colors.map((color, idx) => (
+              <span
+                key={idx}
+                className={`color-swatch ${color.className}`}
+                title={color.name}
+              >
+                <img src={color.image} alt={color.name} />
+              </span>
+            ))}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
+function Shop() {
+  // Default layout is grid with 3 columns ("tf-col-3" active)
+  const [layout, setLayout] = useState("tf-col-3");
+  const [sortOption, setSortOption] = useState("featured");
+  const [filters, setFilters] = useState({});
+  const [products, setProducts] = useState([]);
+
+  const sortOptions = {
+    featured: "Featured",
+    "a-z": "Alphabetically, A-Z",
+    "z-a": "Alphabetically, Z-A",
+    "price-low-high": "Price, low to high",
+    "price-high-low": "Price, high to low",
+    "date-old-new": "Date, old to new",
+    "date-new-old": "Date, new to old",
+  };
+
+  // Fetch products from the database on component mount
+  useEffect(() => {
+    axios
+      .get("http://localhost:5000/api/products")
+      .then((response) => {
+        // Map the DB's "title" field to "name" (used in the hardcoded version)
+        const transformed = response.data.map((product) => ({
+          name: product.title, // for display in ProductCard
+          title: product.title,
+          price: product.price,
+          salePrice: product.salePrice,
+          images: product.images,
+          sizes: product.sizes,
+          discount: product.discount,
+          colors: product.colors,
+        }));
+        setProducts(transformed);
+      })
+      .catch((error) =>
+        console.error("Error fetching products from database:", error)
+      );
+  }, []);
+
+  // Sorting logic (applies only to some options)
+  const sortedProducts = [...products];
+  if (sortOption === "a-z") {
+    sortedProducts.sort((a, b) => a.name.localeCompare(b.name));
+  } else if (sortOption === "z-a") {
+    sortedProducts.sort((a, b) => b.name.localeCompare(a.name));
+  } else if (sortOption === "price-low-high") {
+    sortedProducts.sort((a, b) => a.price - b.price);
+  } else if (sortOption === "price-high-low") {
+    sortedProducts.sort((a, b) => b.price - a.price);
+  }
+  // For "featured", "date-old-new", and "date-new-old" we keep the original order
+
+  // Filtering logic: checking for color and size filters as examples.
+  const filteredProducts = sortedProducts.filter((product) => {
+    let match = true;
+    if (filters.color) {
+      match =
+        match &&
+        product.colors.some(
+          (c) => c.name.toLowerCase() === filters.color.toLowerCase()
+        );
+    }
+    if (filters.size) {
+      match = match && product.sizes.includes(filters.size);
+    }
+    return match;
+  });
+
+  // Handle filter changes from the sidebar
+  const handleFilterChange = (filterName, filterValue) => {
+    setFilters((prev) => ({ ...prev, [filterName]: filterValue }));
+  };
+
+  // Remove a single filter
+  const removeFilter = (filterName) => {
+    setFilters((prev) => {
+      const newFilters = { ...prev };
+      delete newFilters[filterName];
+      return newFilters;
+    });
+  };
+
+  return (
+    <>
+      <PageTitle />
+      <section className="flat-spacing-1">
+        <div className="container">
+          {/* Toggle Control */}
+          <div className="tf-shop-control grid-3 align-items-center">
+            <div></div>
+            <ul className="tf-control-layout d-flex justify-content-center">
+              <li
+                className={`tf-view-layout-switch sw-layout-list list-layout ${
+                  layout === "list" ? "active" : ""
+                }`}
+                onClick={() => setLayout("list")}
+                data-value-layout="list"
+              >
+                <div className="item">
+                  <span className="icon icon-list"></span>
+                </div>
+              </li>
+              <li
+                className={`tf-view-layout-switch sw-layout-2 ${
+                  layout === "tf-col-2" ? "active" : ""
+                }`}
+                onClick={() => setLayout("tf-col-2")}
+                data-value-layout="tf-col-2"
+              >
+                <div className="item">
+                  <span className="icon icon-grid-2"></span>
+                </div>
+              </li>
+              <li
+                className={`tf-view-layout-switch sw-layout-3 ${
+                  layout === "tf-col-3" ? "active" : ""
+                }`}
+                onClick={() => setLayout("tf-col-3")}
+                data-value-layout="tf-col-3"
+              >
+                <div className="item">
+                  <span className="icon icon-grid-3"></span>
+                </div>
+              </li>
+              <li
+                className={`tf-view-layout-switch sw-layout-4 ${
+                  layout === "tf-col-4" ? "active" : ""
+                }`}
+                onClick={() => setLayout("tf-col-4")}
+                data-value-layout="tf-col-4"
+              >
+                <div className="item">
+                  <span className="icon icon-grid-4"></span>
+                </div>
+              </li>
+            </ul>
+            <div className="tf-control-sorting d-flex justify-content-end">
+              <div className="tf-dropdown-sort dropdown">
+                <div
+                  className="btn-select dropdown-toggle"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  <span className="text-sort-value">
+                    {sortOptions[sortOption]}
+                  </span>
+                  <span className="icon icon-arrow-down"></span>
+                </div>
+                <div className="dropdown-menu">
+                  <div
+                    className={`select-item ${
+                      sortOption === "featured" ? "active" : ""
+                    }`}
+                    onClick={() => setSortOption("featured")}
+                  >
+                    <span className="text-value-item">Featured</span>
+                  </div>
+                  <div
+                    className={`select-item ${
+                      sortOption === "a-z" ? "active" : ""
+                    }`}
+                    onClick={() => setSortOption("a-z")}
+                    data-sort-value="a-z"
+                  >
+                    <span className="text-value-item">
+                      Alphabetically, A-Z
+                    </span>
+                  </div>
+                  <div
+                    className={`select-item ${
+                      sortOption === "z-a" ? "active" : ""
+                    }`}
+                    onClick={() => setSortOption("z-a")}
+                    data-sort-value="z-a"
+                  >
+                    <span className="text-value-item">
+                      Alphabetically, Z-A
+                    </span>
+                  </div>
+                  <div
+                    className={`select-item ${
+                      sortOption === "price-low-high" ? "active" : ""
+                    }`}
+                    onClick={() => setSortOption("price-low-high")}
+                    data-sort-value="price-low-high"
+                  >
+                    <span className="text-value-item">
+                      Price, low to high
+                    </span>
+                  </div>
+                  <div
+                    className={`select-item ${
+                      sortOption === "price-high-low" ? "active" : ""
+                    }`}
+                    onClick={() => setSortOption("price-high-low")}
+                    data-sort-value="price-high-low"
+                  >
+                    <span className="text-value-item">
+                      Price, high to low
+                    </span>
+                  </div>
+                  <div
+                    className={`select-item ${
+                      sortOption === "date-old-new" ? "active" : ""
+                    }`}
+                    onClick={() => setSortOption("date-old-new")}
+                    data-sort-value="date-old-new"
+                  >
+                    <span className="text-value-item">
+                      Date, old to new
+                    </span>
+                  </div>
+                  <div
+                    className={`select-item ${
+                      sortOption === "date-new-old" ? "active" : ""
+                    }`}
+                    onClick={() => setSortOption("date-new-old")}
+                    data-sort-value="date-new-old"
+                  >
+                    <span className="text-value-item">
+                      Date, new to old
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="tf-row-flex">
+            <FilterSidebar
+              onFilterChange={handleFilterChange}
+              filters={filters}
+            />
+            <div className="tf-shop-content wrapper-control-shop">
+              <div className="meta-filter-shop">
+                <div id="product-count-grid" className="count-text">
+                  {filteredProducts.length} Products Found
+                </div>
+                <div
+                  id="applied-filters"
+                  style={{ display: "flex", flexWrap: "wrap", gap: "8px" }}
+                >
+                  {Object.keys(filters).length > 0 &&
+                    Object.entries(filters).map(([key, value]) => (
+                      <button
+                        key={key}
+                        className="remove-all-filters"
+                        onClick={() => removeFilter(key)}
+                      >
+                        {key}: {value} <i className="icon icon-close"></i>
+                      </button>
+                    ))}
+                </div>
+                {Object.keys(filters).length > 0 && (
+                  <button
+                    id="remove-all"
+                    className="remove-all-filters"
+                    onClick={() => setFilters({})}
+                  >
+                    Remove All <i className="icon icon-close"></i>
+                  </button>
+                )}
+              </div>
+              <div
+                className={
+                  layout === "list"
+                    ? "tf-list-layout wrapper-shop"
+                    : `tf-grid-layout wrapper-shop ${layout}`
+                }
+              >
+                {filteredProducts.map((product, index) => (
+                  <ProductCard
+                    key={index}
+                    {...product}
+                    viewType={layout === "list" ? "list" : "grid"}
+                  />
+                ))}
+              </div>
+              {layout === "list" ? (
+                <ul className="wg-pagination tf-pagination-list justify-content-start">
+                  <li className="active">
+                    <a href="#" className="pagination-link">
+                      1
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" className="pagination-link animate-hover-btn">
+                      2
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" className="pagination-link animate-hover-btn">
+                      3
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" className="pagination-link animate-hover-btn">
+                      <span className="icon icon-arrow-right"></span>
+                    </a>
+                  </li>
+                </ul>
+              ) : (
+                <ul className="wg-pagination tf-pagination-list">
+                  <li className="active">
+                    <a href="#" className="pagination-link">
+                      1
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" className="pagination-link animate-hover-btn">
+                      2
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" className="pagination-link animate-hover-btn">
+                      3
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" className="pagination-link animate-hover-btn">
+                      4
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" className="pagination-link animate-hover-btn">
+                      <span className="icon icon-arrow-right"></span>
+                    </a>
+                  </li>
+                </ul>
+              )}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div className="offcanvas offcanvas-start canvas-filter" id="filterShop">
+        <div className="canvas-wrapper">
+          <header className="canvas-header">
+            <div className="filter-icon">
+              <span className="icon icon-filter"></span>
+              <span>Filter</span>
+            </div>
+            <span
+              className="icon-close icon-close-popup"
+              data-bs-dismiss="offcanvas"
+              aria-label="Close"
+            ></span>
+          </header>
+          <div className="canvas-body">
+            <FilterSidebar
+              onFilterChange={handleFilterChange}
+              filters={filters}
+              mobile={true}
+            />
+          </div>
+        </div>
+      </div>
+      <div className="btn-sidebar-mobile start-0 filterShop">
+        <button
+          className="type-hover"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#filterShop"
+        >
+          <i className="icon-open"></i>
+          <span className="fw-5">Open Filter</span>
+        </button>
+      </div>
+      <div className="overlay-filter" id="overlay-filter"></div>
+    </>
+  );
+}
+
+export default Shop;
