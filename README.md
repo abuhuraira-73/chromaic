@@ -108,15 +108,13 @@ _Note: Don’t forget to add your `.env` file with MongoDB URI JWT secret and Cl
 
 <h2>Project Screenshots:</h2>
 
-<img src="https://res.cloudinary.com/dcd51y8m1/image/upload/v1744703302/Screenshot_2025-04-15_at_1.17.32_PM_ojjbjt.png" alt="project-screenshot" width="400" height="400/">
+<p align="center"><img src="https://res.cloudinary.com/dcd51y8m1/image/upload/v1744703302/Screenshot_2025-04-15_at_1.17.32_PM_ojjbjt.png" alt="project-image"></p>
+<p align="center"><img src="https://res.cloudinary.com/dcd51y8m1/image/upload/v1744703303/Screenshot_2025-04-15_at_1.17.52_PM_eapqyq.png alt="project-image"></p>
+<p align="center"><img src="https://res.cloudinary.com/dcd51y8m1/image/upload/v1744703303/Screenshot_2025-04-15_at_1.07.10_PM_q6yphi.png" alt="project-image"></p>
+<p align="center"><img src="https://res.cloudinary.com/dcd51y8m1/image/upload/v1744703303/Screenshot_2025-04-15_at_1.07.10_PM_q6yphi.png" alt="project-image"></p>
+<p align="center"><img src="https://res.cloudinary.com/dcd51y8m1/image/upload/v1744703303/Screenshot_2025-04-15_at_1.17.17_PM_x0tdwd.png" alt="project-image"></p>
+<p align="center"><img src="https://res.cloudinary.com/dcd51y8m1/image/upload/v1744703303/Screenshot_2025-04-15_at_1.06.23_PM_azekp0.png" alt="project-image"></p>
 
-<img src="https://res.cloudinary.com/dcd51y8m1/image/upload/v1744703303/Screenshot_2025-04-15_at_1.17.52_PM_eapqyq.png" alt="project-screenshot" width="400" height="400/">
-
-<img src="https://res.cloudinary.com/dcd51y8m1/image/upload/v1744703303/Screenshot_2025-04-15_at_1.07.10_PM_q6yphi.png" alt="project-screenshot" width="400" height="400/">
-
-<img src="https://res.cloudinary.com/dcd51y8m1/image/upload/v1744703303/Screenshot_2025-04-15_at_1.17.17_PM_x0tdwd.png" alt="project-screenshot" width="400" height="400/">
-
-<img src="https://res.cloudinary.com/dcd51y8m1/image/upload/v1744703303/Screenshot_2025-04-15_at_1.06.23_PM_azekp0.png" alt="project-screenshot" width="400" height="400/">
 
 
 
