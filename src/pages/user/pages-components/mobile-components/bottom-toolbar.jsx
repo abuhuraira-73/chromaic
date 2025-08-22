@@ -60,7 +60,7 @@ function BottomToolbar() {
                             <span class="icon icon-close btn-hide-popup" data-bs-dismiss="modal"></span>
                         </div>
                         <div class="modal-bottom">
-                            <h4 class="text-center">Don’t mis out</h4>
+                            <h4 class="text-center">Don’t miss out</h4>
                             <h6 class="text-center">
                                 Be the first one to get the new product at early bird prices.
                             </h6>

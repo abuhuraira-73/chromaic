@@ -74,7 +74,7 @@ const QuickViewModal = ({ product }) => {
               <div className="tf-product-info-list">
                 <div className="tf-product-info-title">
                   <h5>
-                    <a className="link" href="product-detail.html">
+                    <a className="link" href="/productdetails">
                       {displayProduct.title}
                     </a>
                   </h5>
@@ -170,8 +170,8 @@ const QuickViewModal = ({ product }) => {
                 </div>
                 <div className="tf-product-info-buy-button">
                   <form className="">
-                    <a
-                      href="javascript:void(0);"
+                    <button
+                      type="button"
                       className="tf-btn btn-fill justify-content-center fw-6 fs-16 flex-grow-1 animate-hover-btn btn-add-to-cart"
                     >
                       <span>Add to cart -&nbsp;</span>
@@ -180,15 +180,15 @@ const QuickViewModal = ({ product }) => {
                           ? `$${parseFloat(displayProduct.salePrice).toFixed(2)}`
                           : "$0.00"}
                       </span>
-                    </a>
-                    <a
-                      href="javascript:void(0);"
+                    </button>
+                    <button
+                      type="button"
                       className="tf-product-btn-wishlist hover-tooltip box-icon bg_white wishlist btn-icon-action"
                     >
                       <span className="icon icon-heart"></span>
                       <span className="tooltip">Add to Wishlist</span>
                       <span className="icon icon-delete"></span>
-                    </a>
+                    </button>
                     <a
                       href="#compare"
                       data-bs-toggle="offcanvas"
@@ -200,17 +200,17 @@ const QuickViewModal = ({ product }) => {
                       <span className="icon icon-check"></span>
                     </a>
                     <div className="w-100">
-                      <a href="#" className="btns-full">
+                      <button type="button" className="btns-full">
                         Buy with <img src="assets/images/payments/paypal.png" alt="" />
-                      </a>
-                      <a href="#" className="payment-more-option">
+                      </button>
+                      <button type="button" className="payment-more-option">
                         More payment options
-                      </a>
+                      </button>
                     </div>
                   </form>
                 </div>
                 <div>
-                  <a href="product-detail.html" className="tf-btn fw-6 btn-line">
+                  <a href="/productdetails" className="tf-btn fw-6 btn-line">
                     View full details
                     <i className="icon icon-arrow1-top-left"></i>
                   </a>

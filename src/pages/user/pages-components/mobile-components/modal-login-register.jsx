@@ -1,8 +1,6 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 function ModalLogin() {
-  const navigate = useNavigate();
 
   // State for Login Form
   const [loginEmail, setLoginEmail] = useState("");

@@ -12,7 +12,7 @@ function Footer() {
                             <div class="col-xl-3 col-md-6 col-12">
                                 <div class="footer-infor">
                                     <div class="footer-logo">
-                                        <a href="index.html">
+                                        <a href="/">
                                             <img src="images/logo/logo.svg" alt=""/>
                                         </a>
                                     </div>
@@ -21,19 +21,19 @@ function Footer() {
                                             <p>Address: 1234 Fashion Street, Suite 567, <br/> New York, NY 10001</p>
                                         </li>
                                         <li>
-                                            <p>Email: <a href="#">info@fashionshop.com</a></p>
+                                            <p>Email: <a href="mailto:info@fashionshop.com">info@fashionshop.com</a></p>
                                         </li>
                                         <li>
-                                            <p>Phone: <a href="#">(212) 555-1234</a></p>
+                                            <p>Phone: <a href="tel:(212) 555-1234">(212) 555-1234</a></p>
                                         </li>
                                     </ul>
-                                    <a href="contact-1.html" class="tf-btn btn-line">Get direction<i class="icon icon-arrow1-top-left"></i></a>
+                                    <a href="/contactus" class="tf-btn btn-line">Get direction<i class="icon icon-arrow1-top-left"></i></a>
                                     <ul class="tf-social-icon d-flex gap-10">
-                                        <li><a href="#" class="box-icon w_34 round social-facebook social-line"><i class="icon fs-14 icon-fb"></i></a></li>
-                                        <li><a href="#" class="box-icon w_34 round social-twiter social-line"><i class="icon fs-12 icon-Icon-x"></i></a></li>
-                                        <li><a href="#" class="box-icon w_34 round social-instagram social-line"><i class="icon fs-14 icon-instagram"></i></a></li>
-                                        <li><a href="#" class="box-icon w_34 round social-tiktok social-line"><i class="icon fs-14 icon-tiktok"></i></a></li>
-                                        <li><a href="#" class="box-icon w_34 round social-pinterest social-line"><i class="icon fs-14 icon-pinterest-1"></i></a></li>
+                                        <li><a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="box-icon w_34 round social-facebook social-line"><i class="icon fs-14 icon-fb"></i></a></li>
+                                        <li><a href="https://twitter.com" target="_blank" rel="noopener noreferrer" class="box-icon w_34 round social-twiter social-line"><i class="icon fs-12 icon-Icon-x"></i></a></li>
+                                        <li><a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="box-icon w_34 round social-instagram social-line"><i class="icon fs-14 icon-instagram"></i></a></li>
+                                        <li><a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" class="box-icon w_34 round social-tiktok social-line"><i class="icon fs-14 icon-tiktok"></i></a></li>
+                                        <li><a href="https://pinterest.com" target="_blank" rel="noopener noreferrer" class="box-icon w_34 round social-pinterest social-line"><i class="icon fs-14 icon-pinterest-1"></i></a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -46,25 +46,25 @@ function Footer() {
                                 </div>
                                 <ul class="footer-menu-list tf-collapse-content">
                                     <li>
-                                        <a href="privacy-policy.html" class="footer-menu_item">Privacy Policy</a>
+                                        <a href="/privacy-policy" class="footer-menu_item">Privacy Policy</a>
                                     </li>
                                     <li> 
-                                        <a href="delivery-return.html" class="footer-menu_item">  Returns + Exchanges </a>
+                                        <a href="/delivery-return" class="footer-menu_item">  Returns + Exchanges </a>
                                     </li>
                                     <li> 
-                                        <a href="shipping-delivery.html" class="footer-menu_item">Shipping</a>
+                                        <a href="/shipping-delivery" class="footer-menu_item">Shipping</a>
                                     </li>
                                     <li> 
-                                        <a href="terms-conditions.html" class="footer-menu_item">Terms &amp; Conditions</a>
+                                        <a href="/terms-conditions" class="footer-menu_item">Terms &amp; Conditions</a>
                                     </li>
                                     <li> 
-                                        <a href="faq-1.html" class="footer-menu_item">FAQ’s</a>
+                                        <a href="/faq" class="footer-menu_item">FAQ's</a>
                                     </li>
                                     <li> 
-                                        <a href="compare.html" class="footer-menu_item">Compare</a>
+                                        <a href="/compare" class="footer-menu_item">Compare</a>
                                     </li>
                                     <li> 
-                                        <a href="wishlist.html" class="footer-menu_item">My Wishlist</a>
+                                        <a href="/wishlist" class="footer-menu_item">My Wishlist</a>
                                     </li>
                                 </ul>
                             </div>
@@ -77,16 +77,16 @@ function Footer() {
                                 </div>
                                 <ul class="footer-menu-list tf-collapse-content">
                                     <li>
-                                        <a href="about-us.html" class="footer-menu_item">Our Story</a>
+                                        <a href="/aboutus" class="footer-menu_item">Our Story</a>
                                     </li>
                                     <li> 
-                                        <a href="our-store.html" class="footer-menu_item">Visit Our Store</a>
+                                        <a href="/ourstore" class="footer-menu_item">Visit Our Store</a>
                                     </li>
                                     <li> 
-                                        <a href="contact-1.html" class="footer-menu_item">Contact Us</a>
+                                        <a href="/contactus" class="footer-menu_item">Contact Us</a>
                                     </li>
                                     <li> 
-                                        <a href="login.html" class="footer-menu_item">Account</a>
+                                        <a href="/myaccount" class="footer-menu_item">Account</a>
                                     </li>
                                 </ul>
                             </div>
@@ -140,7 +140,7 @@ function Footer() {
                         <div class="row">
                             <div class="col-12">
                                 <div class="footer-bottom-wrap d-flex gap-20 flex-wrap justify-content-between align-items-center">
-                                    <div class="footer-menu_item">© 2024 Ecomus Store. All Rights Reserved</div>
+                                    <div class="footer-menu_item">© 2024 Chromaic Store. All Rights Reserved</div>
                                     <div class="tf-payment">
                                         <img src="images/payments/visa.png" alt=""/>
                                         <img src="images/payments/img-1.png" alt=""/>
