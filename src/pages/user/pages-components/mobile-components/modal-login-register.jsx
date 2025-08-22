@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import API from "../../../api";
 
 function ModalLogin() {
 
@@ -31,7 +32,7 @@ function ModalLogin() {
     e.preventDefault();
     setLoginMessage("");
     try {
-      const response = await fetch("http://localhost:5000/api/users/login", {
+      const response = await fetch(`${API}/api/users/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email: loginEmail, password: loginPassword }),
@@ -58,7 +59,7 @@ function ModalLogin() {
     e.preventDefault();
     setRegMessage("");
     try {
-      const response = await fetch("http://localhost:5000/api/users/register", {
+      const response = await fetch(`${API}/api/users/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

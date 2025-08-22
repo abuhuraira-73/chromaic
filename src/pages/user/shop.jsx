@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import API from "../../api";
 import PageTitle from "./pages-components/shop-components/page-title";
 import FilterSidebar from "./pages-components/shop-components/filter-sidebar";
 import ProductCard from "./pages-components/shop-components/product-card";
@@ -21,7 +22,7 @@ function Shop() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/products")
+      .get(`${API}/api/products`)
       .then((response) => {
         const transformed = response.data.map((product) => ({
           id: product._id,

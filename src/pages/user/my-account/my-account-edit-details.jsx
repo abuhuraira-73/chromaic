@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import AccountSidebar from "./sidebar-account";
 import MyAccountSidebar from "./my-account-sidebar";
 import axios from "axios";
+import API from "../../api";
 
 function MyAccountEditDetails() {
     const [currentPassword, setCurrentPassword] = useState("");
@@ -46,7 +47,7 @@ function MyAccountEditDetails() {
             };
 
             const { data } = await axios.put(
-                'http://localhost:5000/api/users/password',
+                `${API}/api/users/password`,
                 { currentPassword, newPassword },
                 config
             );

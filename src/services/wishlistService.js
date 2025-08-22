@@ -1,7 +1,8 @@
 // frontend/src/services/wishlistService.js
 import axios from "axios";
+import API from "../api";
 
-const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000/api";
+const API_URL = `${API}/api`;
 
 // Helper to get auth config
 const getConfig = () => {

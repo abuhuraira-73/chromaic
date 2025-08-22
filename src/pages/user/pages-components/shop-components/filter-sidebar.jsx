@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import API from "../../../api";
 import "nouislider/dist/nouislider.css";
 import noUiSlider from "nouislider";
 
@@ -15,7 +16,7 @@ function FilterSidebar({ onFilterChange, filters = {}, mobile = false }) {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/categories");
+        const response = await fetch(`${API}/api/categories`);
         if (response.ok) {
           const data = await response.json();
           setCategories(data);

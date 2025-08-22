@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Swiper, SwiperSlide } from "swiper/react";
+import API from "../../../api";
 import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation } from "swiper/modules";
@@ -16,7 +17,7 @@ const QuickViewModal = ({ product }) => {
       if (productId) {
         setLoading(true);
         axios
-          .get(`http://localhost:5000/api/products/${productId}`)
+          .get(`${API}/api/products/${productId}`)
           .then((response) => {
             console.log("API response data:", response.data);
             setProductDetail(response.data);

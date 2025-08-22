@@ -3,6 +3,7 @@ import AccountSidebar from "./sidebar-account";
 import MyAccountSidebar from "./my-account-sidebar";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import API from "../../api";
 
 function MyAccountOrders() {
     const [orders, setOrders] = useState([]);
@@ -26,7 +27,7 @@ function MyAccountOrders() {
                 };
 
                 const { data } = await axios.get(
-                    'http://localhost:5000/api/orders/myorders',
+                    `${API}/api/orders/myorders`,
                     config
                 );
 
