@@ -77,12 +77,6 @@ _Note: Don’t forget to add your `.env` file with MongoDB URI JWT secret and Cl
   You can contribute, fork the repo, or just say hi on socials 💬
 </p>
 
-<br />
-
-<h3>📲 Scan to Support</h3>
-<p>Scan the QR code below to support me or buy me a coffee ☕</p>
-
-<img src="https://res.cloudinary.com/dcd51y8m1/image/upload/v1744703816/photo_6336747100607464490_x_wosmmt.jpg" alt="Support Me QR" width="180" height="180" />
 
 <br /><br />
 
